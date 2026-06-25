@@ -11,3 +11,11 @@ buttons.forEach(btn=>{
         alert("✅ Product Added To Cart");
     });
 });
+let cart = 0;
+
+document.querySelectorAll(".buy-btn").forEach(button=>{
+    button.addEventListener("click",()=>{
+        cart++;
+        document.getElementById("cart-count").innerText = cart;
+    });
+});
