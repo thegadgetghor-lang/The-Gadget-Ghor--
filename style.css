@@ -1,247 +1,1051 @@
-/* The Gadget Ghor - Premium Style */
+/* ================================================
+   The Gadget Ghor — দ্যা গ্যাজেট ঘর
+   style.css — সম্পূর্ণ স্টাইলশিট
+   ================================================ */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#0d1117;
-    color:white;
+/* ── RESET & ROOT ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 8%;
-    background:#161b22;
-    position:sticky;
-    top:0;
+:root {
+  --orange:  #FF6B00;
+  --yellow:  #FFD600;
+  --purple:  #7C3AED;
+  --pink:    #FF2D78;
+  --dark:    #1A1033;
+  --card-bg: #FFFFFF;
+  --text:    #1A1033;
+  --muted:   #6B7280;
+  --radius:  14px;
 }
 
-.logo{
-    font-size:28px;
-    color:#00d4ff;
-    font-weight:bold;
+html {
+  scroll-behavior: smooth;
 }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    transition:.3s;
+body {
+  font-family: 'Hind Siliguri', sans-serif;
+  background: #F5F0FF;
+  color: var(--text);
+  overflow-x: hidden;
 }
 
-nav a:hover{
-    color:#00d4ff;
+/* ================================================
+   NAV
+   ================================================ */
+nav {
+  background: var(--dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  box-shadow: 0 2px 16px #0004;
 }
 
-.hero{
-    text-align:center;
-    padding:80px 20px;
-    background:linear-gradient(135deg,#0066ff,#00d4ff);
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  text-decoration: none;
 }
 
-.hero h1{
-    font-size:50px;
-    margin-bottom:15px;
+.nav-logo .logo-icon {
+  font-size: 2rem;
 }
 
-.hero p{
-    font-size:20px;
-    margin-bottom:25px;
+.nav-logo .logo-text {
+  font-family: 'Baloo Da 2', cursive;
+  font-size: 1.35rem;
+  line-height: 1.1;
 }
 
-.btn{
-    display:inline-block;
-    background:white;
-    color:#0066ff;
-    padding:15px 30px;
-    border-radius:40px;
-    text-decoration:none;
-    font-weight:bold;
+.nav-logo .logo-text span:first-child {
+  color: var(--yellow);
+  display: block;
 }
 
-.section{
-    padding:70px 8%;
+.nav-logo .logo-text span:last-child {
+  color: #fff;
+  font-size: .85rem;
+  font-weight: 700;
 }
 
-.title{
-    text-align:center;
-    margin-bottom:40px;
-    color:#00d4ff;
+.nav-links {
+  display: flex;
+  gap: 6px;
 }
 
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
+.nav-links a {
+  color: #ccc;
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: .92rem;
+  transition: all .2s;
 }
 
-.card{
-    background:#161b22;
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    transition:.3s;
+.nav-links a:hover {
+  background: var(--purple);
+  color: #fff;
 }
 
-.card:hover{
-    transform:translateY(-8px);
+.nav-order-btn {
+  background: linear-gradient(90deg, var(--orange), var(--pink));
+  color: #fff;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 30px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: .92rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .2s;
 }
 
-.card img{
-    width:100%;
-    border-radius:10px;
+.nav-order-btn:hover {
+  opacity: .85;
 }
 
-.price{
-    color:#00d4ff;
-    font-size:22px;
-    margin:10px 0;
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
 }
 
-footer{
-    background:#161b22;
-    text-align:center;
-    padding:30px;
-    margin-top:40px;
-}
-.hero{
-    background:linear-gradient(135deg,#111827,#2563eb);
-    text-align:center;
-    padding:80px 20px;
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  display: block;
 }
 
-.hero h1{
-    font-size:42px;
-    margin-bottom:15px;
+/* ================================================
+   HERO
+   ================================================ */
+.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, #2D1060 60%, #0D0826 100%);
+  padding: 80px 5% 60px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 90vh;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero p{
-    font-size:18px;
-    color:#ddd;
-    margin-bottom:25px;
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 40%, #7C3AED33 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, #FF6B0022 0%, transparent 50%);
+  pointer-events: none;
 }
 
-.hero-buttons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
+/* Floating background icons */
+.floating-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.search-section{
-    background:#161b22;
-    padding:25px;
-    text-align:center;
+.floating-icons span {
+  position: absolute;
+  font-size: 2rem;
+  opacity: .07;
+  animation: float 6s ease-in-out infinite;
 }
 
-.search-section input{
-    width:90%;
-    max-width:600px;
-    padding:15px;
-    border:none;
-    border-radius:30px;
-    font-size:17px;
-} 
-.buy-btn{
-    width:100%;
-    margin-top:15px;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background:#00d4ff;
-    color:#000;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
+.floating-icons span:nth-child(1) { top: 10%; left: 5%;  animation-delay: 0s; }
+.floating-icons span:nth-child(2) { top: 20%; left: 80%; animation-delay: 1s; }
+.floating-icons span:nth-child(3) { top: 50%; left: 15%; animation-delay: 2s; }
+.floating-icons span:nth-child(4) { top: 70%; left: 70%; animation-delay: .5s; }
+.floating-icons span:nth-child(5) { top: 85%; left: 40%; animation-delay: 1.5s; }
+.floating-icons span:nth-child(6) { top: 35%; left: 55%; animation-delay: 2.5s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-18px) rotate(8deg); }
 }
 
-.buy-btn:hover{
-    background:#00a8cc;
-    color:#fff;
+/* Hero text */
+.hero-text {
+  flex: 1;
+  min-width: 280px;
+  max-width: 520px;
+  position: relative;
 }
 
-.card img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:10px;
-}
-.flash-sale{
-    background:#ff3b30;
-    color:#fff;
-    text-align:center;
-    padding:50px 20px;
-    margin-top:50px;
-}
-
-.flash-sale h2{
-    font-size:35px;
-    margin-bottom:10px;
+.hero-badge {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--dark);
+  font-size: .78rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 30px;
+  margin-bottom: 18px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
 }
 
-.flash-sale p{
-    margin-bottom:20px;
-    font-size:18px;
+.hero-text h1 {
+  font-family: 'Baloo Da 2', cursive;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 10px;
 }
 
-.cart-icon{
-    position:fixed;
-    top:20px;
-    right:20px;
-    background:#00d4ff;
-    color:#000;
-    padding:10px 18px;
-    border-radius:30px;
-    font-weight:bold;
-    z-index:999;
+.hero-text h1 .accent {
+  color: var(--yellow);
 }
 
-.whatsapp-float{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:60px;
-    height:60px;
-    background:#25D366;
-    color:white;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
-    font-size:30px;
-    box-shadow:0 4px 10px rgba(0,0,0,.3);
-}
-.category-filter{
-display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap;
-margin:25px 0;
+.hero-text p {
+  color: #C4B5FD;
+  font-size: 1.05rem;
+  margin-bottom: 28px;
+  line-height: 1.7;
 }
 
-.filter-btn{
-padding:10px 18px;
-border:none;
-border-radius:20px;
-background:#00d4ff;
-font-weight:bold;
-cursor:pointer;
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
-.wishlist-btn{
-margin-top:10px;
-width:100%;
-padding:10px;
-background:#ff4081;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(90deg, var(--orange), var(--pink));
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 20px #FF6B0055;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px #FF6B0077;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #7C3AED;
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .2s;
+}
+
+.btn-secondary:hover {
+  background: var(--purple);
+  border-color: var(--purple);
+}
+
+/* Hero card stack visual */
+.hero-visual {
+  flex: 1;
+  min-width: 280px;
+  max-width: 420px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-card-stack {
+  position: relative;
+  width: 280px;
+  height: 300px;
+}
+
+.hero-card-stack .card-back {
+  position: absolute;
+  width: 220px;
+  height: 240px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #7C3AED, #4F46E5);
+  top: 30px;
+  left: 40px;
+  opacity: .5;
+  transform: rotate(-8deg);
+}
+
+.hero-card-stack .card-mid {
+  position: absolute;
+  width: 220px;
+  height: 240px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--pink), #FF6B00);
+  top: 15px;
+  left: 20px;
+  opacity: .7;
+  transform: rotate(-3deg);
+}
+
+.hero-card-stack .card-front {
+  position: absolute;
+  width: 240px;
+  height: 260px;
+  border-radius: 20px;
+  background: #fff;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 20px 60px #0006;
+}
+
+.hero-card-stack .card-front .icon-big {
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.hero-card-stack .card-front p {
+  font-family: 'Baloo Da 2', cursive;
+  font-size: 1rem;
+  color: var(--purple);
+  font-weight: 800;
+}
+
+/* Hero stats */
+.hero-stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat .num {
+  font-family: 'Baloo Da 2', cursive;
+  font-size: 1.6rem;
+  color: var(--yellow);
+  font-weight: 800;
+}
+
+.stat .lbl {
+  color: #C4B5FD;
+  font-size: .8rem;
+}
+
+/* ================================================
+   MARQUEE
+   ================================================ */
+.marquee-wrap {
+  background: var(--yellow);
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 0;
+  animation: marquee 18s linear infinite;
+}
+
+.marquee-track span {
+  padding: 0 28px;
+  font-weight: 700;
+  color: var(--dark);
+  font-size: .95rem;
+}
+
+.marquee-track span.dot {
+  color: var(--orange);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ================================================
+   SHARED SECTION STYLES
+   ================================================ */
+section {
+  padding: 70px 5%;
+}
+
+.section-label {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: 'Baloo Da 2', cursive;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.section-sub {
+  color: var(--muted);
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+/* ================================================
+   CATEGORIES
+   ================================================ */
+#categories {
+  background: #fff;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 16px;
+}
+
+.cat-card {
+  border-radius: var(--radius);
+  padding: 22px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.cat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px #0001;
+}
+
+.cat-card .cat-icon { font-size: 2.2rem; }
+.cat-card .cat-name { font-weight: 700; font-size: .88rem; }
+
+.cat-card.c1 { background: #FFF3E0; } .cat-card.c1 .cat-name { color: #E65100; }
+.cat-card.c2 { background: #F3E5F5; } .cat-card.c2 .cat-name { color: #6A1B9A; }
+.cat-card.c3 { background: #E8F5E9; } .cat-card.c3 .cat-name { color: #2E7D32; }
+.cat-card.c4 { background: #E3F2FD; } .cat-card.c4 .cat-name { color: #1565C0; }
+.cat-card.c5 { background: #FCE4EC; } .cat-card.c5 .cat-name { color: #880E4F; }
+.cat-card.c6 { background: #FFFDE7; } .cat-card.c6 .cat-name { color: #F57F17; }
+.cat-card.c7 { background: #E0F7FA; } .cat-card.c7 .cat-name { color: #006064; }
+.cat-card.c8 { background: #F9FBE7; } .cat-card.c8 .cat-name { color: #558B2F; }
+
+/* ================================================
+   PRODUCTS
+   ================================================ */
+#products {
+  background: #F5F0FF;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.filter-btn {
+  padding: 7px 18px;
+  border-radius: 30px;
+  border: 2px solid #D8B4FE;
+  background: transparent;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: .88rem;
+  cursor: pointer;
+  color: var(--purple);
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--purple);
+  color: #fff;
+  border-color: var(--purple);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 12px #7C3AED11;
+  transition: transform .22s, box-shadow .22s;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px #7C3AED22;
+}
+
+.product-thumb {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+}
+
+.badge-new {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--orange);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 30px;
+  letter-spacing: .05em;
+}
+
+.badge-hot {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--pink);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 30px;
+}
+
+.product-info {
+  padding: 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-info h3 {
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.product-info .prod-desc {
+  font-size: .8rem;
+  color: var(--muted);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.price {
+  font-family: 'Baloo Da 2', cursive;
+  font-size: 1.15rem;
+  color: var(--orange);
+  font-weight: 800;
+}
+
+.price-old {
+  font-size: .8rem;
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.order-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, #25D366, #128C7E);
+  color: #fff;
+  border: none;
+  padding: 11px;
+  border-radius: 10px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: .88rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  justify-content: center;
+  margin-top: 10px;
+  transition: opacity .2s;
+}
+
+.order-btn:hover {
+  opacity: .88;
+}
+
+/* ================================================
+   SOUNDBOX SPECIAL SECTION
+   ================================================ */
+#soundbox {
+  background: linear-gradient(135deg, var(--dark), #2D1060);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+#soundbox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, #FF2D7833 0%, transparent 60%);
+}
+
+.soundbox-inner {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+}
+
+.soundbox-badge {
+  display: inline-block;
+  background: var(--pink);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 30px;
+  margin-bottom: 14px;
+  letter-spacing: .06em;
+}
+
+.soundbox-text h2 {
+  font-family: 'Baloo Da 2', cursive;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  margin-bottom: 12px;
+}
+
+.soundbox-text h2 .accent {
+  color: var(--yellow);
+}
+
+.soundbox-text p {
+  color: #C4B5FD;
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: 24px;
+}
+
+.soundbox-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.sf {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .95rem;
+}
+
+.sf .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--yellow);
+  flex-shrink: 0;
+}
+
+.soundbox-visual {
+  font-size: 9rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 40px #FF2D7866);
+  animation: pulse-sb 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-sb {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.06); }
+}
+
+/* ================================================
+   WHY US
+   ================================================ */
+#why {
+  background: #fff;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.why-card {
+  border-radius: var(--radius);
+  padding: 28px 22px;
+}
+
+.why-card .icon {
+  font-size: 2.4rem;
+  margin-bottom: 14px;
+}
+
+.why-card h3 {
+  font-family: 'Baloo Da 2', cursive;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.why-card p {
+  font-size: .88rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.why-card.w1 { background: #FFF3E0; } .why-card.w1 h3 { color: #E65100; }
+.why-card.w2 { background: #F3E5F5; } .why-card.w2 h3 { color: #6A1B9A; }
+.why-card.w3 { background: #E3F2FD; } .why-card.w3 h3 { color: #1565C0; }
+.why-card.w4 { background: #E8F5E9; } .why-card.w4 h3 { color: #2E7D32; }
+
+/* ================================================
+   REVIEWS
+   ================================================ */
+#reviews {
+  background: #F5F0FF;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.review-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: 0 2px 12px #7C3AED0D;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.review-meta h4 {
+  font-weight: 700;
+  font-size: .95rem;
+}
+
+.review-meta span {
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+.stars {
+  color: #FFD600;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.review-card p {
+  font-size: .88rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.verified {
+  display: inline-block;
+  background: #E8F5E9;
+  color: #2E7D32;
+  font-size: .7rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 30px;
+  margin-top: 10px;
+}
+
+/* ================================================
+   HOW TO ORDER
+   ================================================ */
+#order {
+  background: #fff;
+}
+
+.steps {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.step {
+  flex: 1;
+  min-width: 200px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.step-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Baloo Da 2', cursive;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 auto 14px;
+}
+
+.step:nth-child(1) .step-num { background: linear-gradient(135deg, var(--orange), var(--yellow)); }
+.step:nth-child(2) .step-num { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+.step:nth-child(3) .step-num { background: linear-gradient(135deg, #25D366, #128C7E); }
+.step:nth-child(4) .step-num { background: linear-gradient(135deg, var(--pink), var(--orange)); }
+
+.step h3 {
+  font-family: 'Baloo Da 2', cursive;
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: var(--dark);
+}
+
+.step p {
+  font-size: .84rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.step-arrow {
+  position: absolute;
+  right: -14px;
+  top: 36px;
+  font-size: 1.4rem;
+  color: #D8B4FE;
+  z-index: 1;
+}
+
+.steps .step:last-child .step-arrow {
+  display: none;
+}
+
+.wa-order-big {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(90deg, #25D366, #128C7E);
+  color: #fff;
+  text-decoration: none;
+  padding: 16px 36px;
+  border-radius: 40px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 40px auto 0;
+  width: fit-content;
+  box-shadow: 0 6px 24px #25D36644;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.wa-order-big:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px #25D36666;
+}
+
+.wa-icon {
+  font-size: 1.5rem;
+}
+
+/* ================================================
+   CONTACT
+   ================================================ */
+#contact {
+  background: linear-gradient(135deg, #1A1033, #2D1060);
+  color: #fff;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.contact-card {
+  background: #ffffff12;
+  border-radius: var(--radius);
+  padding: 24px;
+  border: 1px solid #ffffff18;
+  text-align: center;
+}
+
+.contact-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.contact-card h3 {
+  font-family: 'Baloo Da 2', cursive;
+  font-size: 1rem;
+  color: var(--yellow);
+  margin-bottom: 6px;
+}
+
+.contact-card a {
+  color: #C4B5FD;
+  text-decoration: none;
+  font-size: .9rem;
+}
+
+.contact-card a:hover {
+  color: var(--yellow);
+}
+
+.contact-card p {
+  color: #C4B5FD;
+  font-size: .9rem;
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+footer {
+  background: #0D0826;
+  color: #888;
+  text-align: center;
+  padding: 22px 5%;
+  font-size: .85rem;
+}
+
+footer span {
+  color: var(--yellow);
+}
+
+/* ================================================
+   FLOATING WHATSAPP BUTTON
+   ================================================ */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  background: #25D366;
+  color: #fff;
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 4px 20px #25D36666;
+  text-decoration: none;
+  animation: bounce-wa 3s ease-in-out infinite;
+  transition: transform .2s;
+}
+
+.wa-float:hover {
+  transform: scale(1.1);
+}
+
+@keyframes bounce-wa {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ================================================
+   RESPONSIVE — MOBILE
+   ================================================ */
+@media (max-width: 768px) {
+  .nav-links,
+  .nav-order-btn {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero {
+    padding: 50px 5% 40px;
+    min-height: auto;
+  }
+
+  .soundbox-visual {
+    font-size: 6rem;
+  }
+
+  .steps {
+    flex-direction: column;
+  }
+
+  .step-arrow {
+    display: none;
+  }
 }
