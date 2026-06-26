@@ -973,44 +973,7 @@
                     cardPaymentForm.classList.add('active');
                 }
                 
-                // Enable submit button
-                submitButton.disabled = false;
-            });
-        });
 
-        // Card number formatting
-        const cardNumberInput = document.getElementById('card-number');
-        if (cardNumberInput) {
-            cardNumberInput.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\s/g, '');
-                value = value.replace(/\D/g, '');
-                let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
-                e.target.value = formattedValue;
-            });
-        }
-
-        // Card expiry formatting
-        const cardExpiryInput = document.getElementById('card-expiry');
-        if (cardExpiryInput) {
-            cardExpiryInput.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length >= 2) {
-                    value = value.slice(0, 2) + '/' + value.slice(2, 4);
-                }
-                e.target.value = value;
-            });
-        }
-
-        // CVV validation (numbers only)
-        const cardCvvInput = document.getElementById('card-cvv');
-        if (cardCvvInput) {
-            cardCvvInput.addEventListener('input', function(e) {
-                e.target.value = e.target.value.replace(/\D/g, '');
-            });
-        }
-
-        // Mobile number validation
-        const mobileNumberInput = document.getElementById('mobile-number');
    
   </div>
   <a class="wa-order-big" href="https://wa.me/8801340353399?text=আমি%20অর্ডার%20করতে%20চাই" target="_blank">
@@ -1050,7 +1013,7 @@
 <!-- FOOTER -->
 <footer>
   <p>© ২০২৬ <span>The Gadget Ghor — দ্যা গ্যাজেট ঘর</span> | সর্বস্বত্ব সংরক্ষিত</p>
-  <p style="margin-top:6px; font-size:.78rem;">Made with in Bangladesh</p>
+  <p style="margin-top:6px; font-size:.78rem;">Made by HaKiM in Bangladesh</p>
 </footer>
 
 <!-- FLOATING WA BUTTON -->
