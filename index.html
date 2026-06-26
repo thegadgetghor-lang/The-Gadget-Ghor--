@@ -1,434 +1,685 @@
 <!DOCTYPE html>
 <html lang="bn">
-<head><link rel="stylesheet" href="style.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Gadget Ghor - দ্যা গ্যাজেট ঘর</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Gadget Ghor | দ্যা গ্যাজেট ঘর</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Baloo+Da+2:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-body{<<header>
-    <div class="logo">THE GADGET GHOR</div>
+    :root {
+      --orange:  #FF6B00;
+      --yellow:  #FFD600;
+      --purple:  #7C3AED;
+      --pink:    #FF2D78;
+      --dark:    #1A1033;
+      --card-bg: #FFFFFF;
+      --text:    #1A1033;
+      --muted:   #6B7280;
+      --radius:  14px;
+    }
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="#">Categories</a>
-        <a href="#">Offers</a>
-        <a href="#">Contact</a>
-    </nav>
-</header><section class="hero">
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Hind Siliguri', sans-serif; background: #F5F0FF; color: var(--text); overflow-x: hidden; }
 
-    <div class="hero-content">
-        <h1>Welcome to The Gadget Ghor</h1>
+    /* ── NAV ── */
+    nav {
+      background: var(--dark);
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      box-shadow: 0 2px 16px #0004;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; padding: 12px 0; text-decoration: none; }
+    .nav-logo .logo-icon { font-size: 2rem; }
+    .nav-logo .logo-text { font-family: 'Baloo Da 2', cursive; font-size: 1.35rem; line-height: 1.1; }
+    .nav-logo .logo-text span:first-child { color: var(--yellow); display: block; }
+    .nav-logo .logo-text span:last-child  { color: #fff; font-size: .85rem; font-weight: 700; }
+    .nav-links { display: flex; gap: 6px; }
+    .nav-links a {
+      color: #ccc; text-decoration: none; padding: 7px 14px; border-radius: 8px;
+      font-size: .92rem; transition: all .2s;
+    }
+    .nav-links a:hover { background: var(--purple); color: #fff; }
+    .nav-order-btn {
+      background: linear-gradient(90deg, var(--orange), var(--pink));
+      color: #fff; border: none; padding: 9px 20px; border-radius: 30px;
+      font-family: 'Hind Siliguri', sans-serif; font-size: .92rem; font-weight: 700;
+      cursor: pointer; text-decoration: none; transition: opacity .2s;
+    }
+    .nav-order-btn:hover { opacity: .85; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; display: block; }
 
-        <p>
-            Smart Watch • AirPods • Speaker • Charger • Ring • Wallet • Lighter
-        </p>
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #2D1060 60%, #0D0826 100%);
+      padding: 80px 5% 60px;
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: center;
+      min-height: 90vh; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 40%, #7C3AED33 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, #FF6B0022 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .floating-icons {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .floating-icons span {
+      position: absolute; font-size: 2rem; opacity: .07;
+      animation: float 6s ease-in-out infinite;
+    }
+    .floating-icons span:nth-child(1)  { top:10%; left:5%;  animation-delay:0s; }
+    .floating-icons span:nth-child(2)  { top:20%; left:80%; animation-delay:1s; }
+    .floating-icons span:nth-child(3)  { top:50%; left:15%; animation-delay:2s; }
+    .floating-icons span:nth-child(4)  { top:70%; left:70%; animation-delay:.5s; }
+    .floating-icons span:nth-child(5)  { top:85%; left:40%; animation-delay:1.5s; }
+    .floating-icons span:nth-child(6)  { top:35%; left:55%; animation-delay:2.5s; }
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-18px) rotate(8deg); }
+    }
 
-        <div class="hero-buttons">
-            <a href="#" class="btn">🛒 Shop Now</a>
+    .hero-text { flex: 1; min-width: 280px; max-width: 520px; position: relative; }
+    .hero-badge {
+      display: inline-block; background: var(--yellow); color: var(--dark);
+      font-size: .78rem; font-weight: 700; padding: 4px 14px; border-radius: 30px;
+      margin-bottom: 18px; letter-spacing: .05em; text-transform: uppercase;
+    }
+    .hero-text h1 {
+      font-family: 'Baloo Da 2', cursive;
+      font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1;
+      color: #fff; margin-bottom: 10px;
+    }
+    .hero-text h1 .accent { color: var(--yellow); }
+    .hero-text p { color: #C4B5FD; font-size: 1.05rem; margin-bottom: 28px; line-height: 1.7; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--orange), var(--pink));
+      color: #fff; border: none; padding: 14px 28px; border-radius: 30px;
+      font-family: 'Hind Siliguri', sans-serif; font-size: 1rem; font-weight: 700;
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
+      gap: 8px; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px #FF6B0055;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px #FF6B0077; }
+    .btn-secondary {
+      background: transparent; color: #fff; border: 2px solid #7C3AED;
+      padding: 12px 26px; border-radius: 30px; font-family: 'Hind Siliguri', sans-serif;
+      font-size: 1rem; font-weight: 600; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px; transition: all .2s;
+    }
+    .btn-secondary:hover { background: var(--purple); border-color: var(--purple); }
 
-            <a href="https://wa.me/8801340353399" class="btn">
-                💬 WhatsApp Order
-            </a>
-        </div>
-    </div>
+    .hero-visual {
+      flex: 1; min-width: 280px; max-width: 420px; position: relative;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-card-stack { position: relative; width: 280px; height: 300px; }
+    .hero-card-stack .card-back {
+      position: absolute; width: 220px; height: 240px; border-radius: 20px;
+      background: linear-gradient(135deg, #7C3AED, #4F46E5);
+      top: 30px; left: 40px; opacity: .5; transform: rotate(-8deg);
+    }
+    .hero-card-stack .card-mid {
+      position: absolute; width: 220px; height: 240px; border-radius: 20px;
+      background: linear-gradient(135deg, var(--pink), #FF6B00);
+      top: 15px; left: 20px; opacity: .7; transform: rotate(-3deg);
+    }
+    .hero-card-stack .card-front {
+      position: absolute; width: 240px; height: 260px; border-radius: 20px;
+      background: #fff; top: 0; left: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; box-shadow: 0 20px 60px #0006;
+    }
+    .hero-card-stack .card-front .icon-big { font-size: 5rem; line-height: 1; }
+    .hero-card-stack .card-front p {
+      font-family: 'Baloo Da 2', cursive; font-size: 1rem; color: var(--purple); font-weight: 800;
+    }
+    .hero-stats { display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat .num { font-family: 'Baloo Da 2', cursive; font-size: 1.6rem; color: var(--yellow); font-weight: 800; }
+    .stat .lbl { color: #C4B5FD; font-size: .8rem; }
 
-</section>
+    /* ── MARQUEE ── */
+    .marquee-wrap { background: var(--yellow); padding: 10px 0; overflow: hidden; white-space: nowrap; }
+    .marquee-track { display: inline-flex; gap: 0; animation: marquee 18s linear infinite; }
+    .marquee-track span { padding: 0 28px; font-weight: 700; color: var(--dark); font-size: .95rem; }
+    .marquee-track span.dot { color: var(--orange); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-<section class="search-section">
-     <section class="section">
+    /* ── SECTIONS ── */
+    section { padding: 70px 5%; }
+    .section-label { font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--purple); margin-bottom: 8px; }
+    .section-title { font-family: 'Baloo Da 2', cursive; font-size: clamp(1.6rem, 4vw, 2.2rem); color: var(--dark); margin-bottom: 10px; }
+    .section-sub { color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 40px; }
 
-    <h2 class="title">🔥 Featured Products</h2>
-     <section class="flash-sale">
-    <h2>⚡ Flash Sale</h2>
-    <p>আজকের অফার! নির্বাচিত গ্যাজেটে সর্বোচ্চ <strong>৩০% ছাড়</strong></p>
-    <a href="#" class="btn">🔥 Shop Flash Sale</a>
-</section>
+    /* ── CATEGORIES ── */
+    #categories { background: #fff; }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; }
+    .cat-card {
+      border-radius: var(--radius); padding: 22px 12px; text-align: center;
+      cursor: pointer; transition: transform .2s, box-shadow .2s; text-decoration: none;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .cat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px #0001; }
+    .cat-card .cat-icon { font-size: 2.2rem; }
+    .cat-card .cat-name { font-weight: 700; font-size: .88rem; }
+    .cat-card.c1 { background: #FFF3E0; } .cat-card.c1 .cat-name { color: #E65100; }
+    .cat-card.c2 { background: #F3E5F5; } .cat-card.c2 .cat-name { color: #6A1B9A; }
+    .cat-card.c3 { background: #E8F5E9; } .cat-card.c3 .cat-name { color: #2E7D32; }
+    .cat-card.c4 { background: #E3F2FD; } .cat-card.c4 .cat-name { color: #1565C0; }
+    .cat-card.c5 { background: #FCE4EC; } .cat-card.c5 .cat-name { color: #880E4F; }
+    .cat-card.c6 { background: #FFFDE7; } .cat-card.c6 .cat-name { color: #F57F17; }
+    .cat-card.c7 { background: #E0F7FA; } .cat-card.c7 .cat-name { color: #006064; }
+    .cat-card.c8 { background: #F9FBE7; } .cat-card.c8 .cat-name { color: #558B2F; }
 
-<div class="cart-icon">
-    🛒 <span id="cart-count">0</span>
-</div>
+    /* ── PRODUCTS ── */
+    #products { background: #F5F0FF; }
+    .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+    .filter-btn {
+      padding: 7px 18px; border-radius: 30px; border: 2px solid #D8B4FE;
+      background: transparent; font-family: 'Hind Siliguri', sans-serif;
+      font-size: .88rem; cursor: pointer; color: var(--purple); font-weight: 600; transition: all .2s;
+    }
+    .filter-btn.active, .filter-btn:hover { background: var(--purple); color: #fff; border-color: var(--purple); }
 
-<a href="https://wa.me/8801340353399" class="whatsapp-float" target="_blank">
-    💬
-</a>
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+    .product-card {
+      background: #fff; border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 2px 12px #7C3AED11; transition: transform .22s, box-shadow .22s;
+      display: flex; flex-direction: column;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px #7C3AED22; }
+    .product-thumb {
+      height: 160px; display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; position: relative;
+    }
+    .badge-new {
+      position: absolute; top: 10px; left: 10px; background: var(--orange);
+      color: #fff; font-size: .7rem; font-weight: 700; padding: 3px 10px;
+      border-radius: 30px; letter-spacing: .05em;
+    }
+    .badge-hot {
+      position: absolute; top: 10px; left: 10px; background: var(--pink);
+      color: #fff; font-size: .7rem; font-weight: 700; padding: 3px 10px;
+      border-radius: 30px;
+    }
+    .product-info { padding: 14px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .product-info h3 { font-size: .95rem; font-weight: 700; color: var(--dark); }
+    .product-info .prod-desc { font-size: .8rem; color: var(--muted); line-height: 1.5; flex: 1; }
+    .price-row { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+    .price { font-family: 'Baloo Da 2', cursive; font-size: 1.15rem; color: var(--orange); font-weight: 800; }
+    .price-old { font-size: .8rem; color: var(--muted); text-decoration: line-through; }
+    .order-btn {
+      display: flex; align-items: center; gap: 6px; width: 100%;
+      background: linear-gradient(90deg, #25D366, #128C7E);
+      color: #fff; border: none; padding: 11px; border-radius: 10px;
+      font-family: 'Hind Siliguri', sans-serif; font-size: .88rem; font-weight: 700;
+      cursor: pointer; text-decoration: none; justify-content: center; margin-top: 10px;
+      transition: opacity .2s;
+    }
+    .order-btn:hover { opacity: .88; }
 
-    <div class="products">
+    /* ── SPECIAL SOUNDBOX ── */
+    #soundbox {
+      background: linear-gradient(135deg, var(--dark), #2D1060);
+      color: #fff; position: relative; overflow: hidden;
+    }
+    #soundbox::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, #FF2D7833 0%, transparent 60%);
+    }
+    .soundbox-inner { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; justify-content: center; position: relative; }
+    .soundbox-badge { display: inline-block; background: var(--pink); color: #fff; font-size: .75rem; font-weight: 700; padding: 4px 14px; border-radius: 30px; margin-bottom: 14px; letter-spacing: .06em; }
+    .soundbox-text h2 { font-family: 'Baloo Da 2', cursive; font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 12px; }
+    .soundbox-text h2 .accent { color: var(--yellow); }
+    .soundbox-text p { color: #C4B5FD; line-height: 1.7; max-width: 420px; margin-bottom: 24px; }
+    .soundbox-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .sf { display: flex; align-items: center; gap: 10px; font-size: .95rem; }
+    .sf .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+    .soundbox-visual { font-size: 9rem; line-height: 1; filter: drop-shadow(0 0 40px #FF2D7866); animation: pulse-sb 2.5s ease-in-out infinite; }
+    @keyframes pulse-sb { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
 
-        <div class="card">
-            <img src="https://via.placeholder.com/250x250?text=Smart+Watch" alt="Smart Watch">
-            <h3>Smart Watch</h3>
-            <p class="price">৳1,990</p>
-            <p>⭐⭐⭐⭐⭐ (4.9)</p>
-            <button class="buy-btn">🛒 Add to Cart</button>
-        </div>
+    /* ── WHY US ── */
+    #why { background: #fff; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; }
+    .why-card { border-radius: var(--radius); padding: 28px 22px; }
+    .why-card .icon { font-size: 2.4rem; margin-bottom: 14px; }
+    .why-card h3 { font-family: 'Baloo Da 2', cursive; font-size: 1.1rem; margin-bottom: 8px; }
+    .why-card p { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+    .why-card.w1 { background: #FFF3E0; } .why-card.w1 h3 { color: #E65100; }
+    .why-card.w2 { background: #F3E5F5; } .why-card.w2 h3 { color: #6A1B9A; }
+    .why-card.w3 { background: #E3F2FD; } .why-card.w3 h3 { color: #1565C0; }
+    .why-card.w4 { background: #E8F5E9; } .why-card.w4 h3 { color: #2E7D32; }
 
-        <div class="card">
-            <img src="https://via.placeholder.com/250x250?text=AirPods" alt="AirPods">
-            <h3>AirPods Pro</h3>
-            <p class="price">৳2,490</p>
-            <p>⭐⭐⭐⭐⭐ (4.8)</p>
-            <button class="buy-btn">🛒 Add to Cart</button>
-        </div>
+    /* ── REVIEWS ── */
+    #reviews { background: #F5F0FF; }
+    .review-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    .review-card {
+      background: #fff; border-radius: var(--radius); padding: 22px;
+      box-shadow: 0 2px 12px #7C3AED0D;
+    }
+    .review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .review-meta h4 { font-weight: 700; font-size: .95rem; }
+    .review-meta span { font-size: .78rem; color: var(--muted); }
+    .stars { color: #FFD600; font-size: 1rem; margin-bottom: 8px; letter-spacing: 2px; }
+    .review-card p { font-size: .88rem; color: #444; line-height: 1.6; }
+    .verified { display: inline-block; background: #E8F5E9; color: #2E7D32; font-size: .7rem; font-weight: 700; padding: 2px 10px; border-radius: 30px; margin-top: 10px; }
 
-        <div class="card">
-            <img src="https://via.placeholder.com/250x250?text=Speaker" alt="Speaker">
-            <h3>Bluetooth Speaker</h3>
-            <p class="price">৳1,690</p>
-            <p>⭐⭐⭐⭐⭐ (4.7)</p>
-            <button class="buy-btn">🛒 Add to Cart</button>
-        </div>
+    /* ── HOW TO ORDER ── */
+    #order { background: #fff; }
+    .steps { display: flex; gap: 0; flex-wrap: wrap; position: relative; }
+    .step { flex: 1; min-width: 200px; padding: 20px; text-align: center; position: relative; }
+    .step-num { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Baloo Da 2', cursive; font-size: 1.4rem; font-weight: 800; color: #fff; margin: 0 auto 14px; }
+    .step:nth-child(1) .step-num { background: linear-gradient(135deg, var(--orange), var(--yellow)); }
+    .step:nth-child(2) .step-num { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+    .step:nth-child(3) .step-num { background: linear-gradient(135deg, #25D366, #128C7E); }
+    .step:nth-child(4) .step-num { background: linear-gradient(135deg, var(--pink), var(--orange)); }
+    .step h3 { font-family: 'Baloo Da 2', cursive; font-size: 1rem; margin-bottom: 6px; color: var(--dark); }
+    .step p { font-size: .84rem; color: var(--muted); line-height: 1.6; }
+    .step-arrow { position: absolute; right: -14px; top: 36px; font-size: 1.4rem; color: #D8B4FE; z-index: 1; }
+    .steps .step:last-child .step-arrow { display: none; }
+    .wa-order-big {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      background: linear-gradient(90deg, #25D366, #128C7E);
+      color: #fff; text-decoration: none; padding: 16px 36px; border-radius: 40px;
+      font-family: 'Hind Siliguri', sans-serif; font-size: 1.1rem; font-weight: 700;
+      margin: 40px auto 0; width: fit-content;
+      box-shadow: 0 6px 24px #25D36644; transition: transform .2s, box-shadow .2s;
+    }
+    .wa-order-big:hover { transform: translateY(-3px); box-shadow: 0 12px 36px #25D36666; }
+    .wa-icon { font-size: 1.5rem; }
 
-        <div class="card">
-            <img src="https://via.placeholder.com/250x250?text=Charger" alt="Charger">
-            <h3>Fast Charger</h3>
-            <p class="price">৳890</p>
-            <p>⭐⭐⭐⭐⭐ (4.9)</p>
-            <button class="buy-btn">🛒 Add to Cart</button>
-        </div>
+    /* ── CONTACT ── */
+    #contact { background: linear-gradient(135deg, #1A1033, #2D1060); color: #fff; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+    .contact-card {
+      background: #ffffff12; border-radius: var(--radius); padding: 24px;
+      border: 1px solid #ffffff18; text-align: center;
+    }
+    .contact-card .icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .contact-card h3 { font-family: 'Baloo Da 2', cursive; font-size: 1rem; color: var(--yellow); margin-bottom: 6px; }
+    .contact-card a { color: #C4B5FD; text-decoration: none; font-size: .9rem; }
+    .contact-card a:hover { color: var(--yellow); }
+    .contact-card p { color: #C4B5FD; font-size: .9rem; }
 
-    </div>
+    /* ── FOOTER ── */
+    footer {
+      background: #0D0826; color: #888; text-align: center;
+      padding: 22px 5%; font-size: .85rem;
+    }
+    footer span { color: var(--yellow); }
 
-</section>
+    /* ── FLOATING WA ── */
+    .wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      background: #25D366; color: #fff; border-radius: 50%;
+      width: 58px; height: 58px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; box-shadow: 0 4px 20px #25D36666;
+      text-decoration: none; animation: bounce-wa 3s ease-in-out infinite;
+      transition: transform .2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+    @keyframes bounce-wa { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
-    <input
-        type="text"
-        placeholder="🔍 Search Products..."
-        id="searchBox">
-     <div class="category-filter">
-
-<button class="filter-btn" data-category="all">All</button>
-
-<button class="filter-btn" data-category="watch">Smart Watch</button>
-     <div class="card" data-category="watch">
-
-<button class="filter-btn" data-category="airpods">AirPods</button>
-     <div class="card" data-category="airpods">
-
-<button class="filter-btn" data-category="speaker">Speaker</button>
-     <div class="card" data-category="speaker">
-
-<button class="filter-btn" data-category="charger">Charger</button>
-     <div class="card" data-category="charger">
-
-</div>
-
-</section>
-
-<section class="hero">
-
-    <h1>The Gadget Ghor</h1>
-
-    <p>
-        বাংলাদেশের বিশ্বস্ত গ্যাজেট শপ
-    </p>
-
-    <a href="#" class="btn">Shop Now</a>
-
-    <a href="https://wa.me/8801340353399" class="btn">
-        WhatsApp Order
-    </a>
-
-</section>
-
-<section class="section">
-
-<h2 class="title">
-Featured Categories
-</h2>
-
-<div class="products">
-
-<div class="card">
-⌚
-<h3>Smart Watch</h3>
-</div>
-
-<div class="card">
-🎧
-<h3>AirPods</h3>
-</div>
-
-<div class="card">
-🔊
-<h3>Speaker</h3>
-</div>
-
-<div class="card">
-🔌
-<h3>Charger</h3>
-</div>
-
-<div class="card">
-💍
-<h3>Ring</h3>
-</div>
-
-<div class="card">
-👛
-<h3>Wallet</h3>
-</div>
-
-</div>
-
-</section>
-
-<footer>
-
-<h2>The Gadget Ghor</h2>
-
-<p>
-📞 +8801340353399
-</p>
-
-<p>
-📧 thegadgetghor@gmail.com
-</p>
-
-</footer>
-
-<script src="script.js"></script>
-margin:0;
-font-family:Arial,sans-serif;
-background:#0d1117;
-color:white;
-text-align:center;
-}
-
-header{
-background:#161b22;
-padding:20px;
-}
-
-h1{
-color:#00d4ff;
-}
-
-.hero{
-padding:60px 20px;
-}
-
-.button{
-display:inline-block;
-background:#00d4ff;
-color:black;
-padding:12px 25px;
-text-decoration:none;
-border-radius:30px;
-font-weight:bold;
-margin:10px;
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
-padding:20px;
-}
-
-.card{
-background:#161b22;
-padding:20px;
-border-radius:10px;
-}
-
-footer{
-background:#161b22;
-padding:20px;
-margin-top:30px;
-}
-</style>
-
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nav-links, .nav-order-btn { display: none; }
+      .hamburger { display: flex; }
+      .hero { padding: 50px 5% 40px; min-height: auto; }
+      .soundbox-visual { font-size: 6rem; }
+      .steps { flex-direction: column; }
+      .step-arrow { display: none; }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-    <section class="hero">
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <span class="logo-icon">🔌</span>
+    <span class="logo-text">
+      <span>The Gadget Ghor</span>
+      <span>দ্যা গ্যাজেট ঘর</span>
+    </span>
+  </a>
+  <div class="nav-links">
+    <a href="#categories">ক্যাটাগরি</a>
+    <a href="#products">প্রোডাক্ট</a>
+    <a href="#soundbox">সাউন্ড বক্স</a>
+    <a href="#reviews">রিভিউ</a>
+    <a href="#contact">যোগাযোগ</a>
+  </div>
+  <a class="nav-order-btn" href="https://wa.me/8801XXXXXXXXX?text=আমি%20অর্ডার%20করতে%20চাই" target="_blank">📦 অর্ডার করুন</a>
+  <div class="hamburger" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-    <div class="hero-content">
-        <h1>Welcome to The Gadget Ghor</h1>
-
-        <p>
-            Smart Watch • AirPods • Speaker • Charger • Ring • Wallet • Lighter
-        </p>
-
-        <div class="hero-buttons">
-            <a href="#" class="btn">🛒 Shop Now</a>
-
-            <a href="https://wa.me/8801340353399" class="btn">
-                💬 WhatsApp Order
-            </a>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="floating-icons">
+    <span>📱</span><span>🎧</span><span>🔋</span><span>💡</span><span>⌚</span><span>🔌</span>
+  </div>
+  <div class="hero-text">
+    <div class="hero-badge">⚡ বাংলাদেশের সেরা গ্যাজেট শপ</div>
+    <h1>সেরা <span class="accent">গ্যাজেট</span>,<br/>সেরা দামে!</h1>
+    <p>রিচার্জেবল ফ্যান, এয়ারপডস, চার্জার, স্মার্ট লাইটার, সাউন্ড বক্স সহ সকল চাইনিজ ইলেকট্রিক আইটেম — এক জায়গায়, সাশ্রয়ী মূল্যে।</p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="https://wa.me/8801XXXXXXXXX?text=আমি%20অর্ডার%20করতে%20চাই" target="_blank">
+        💬 WhatsApp-এ অর্ডার করুন
+      </a>
+      <a class="btn-secondary" href="https://facebook.com/TheGadgetGhor" target="_blank">
+        👍 Facebook পেজ
+      </a>
     </div>
-
+    <div class="hero-stats">
+      <div class="stat"><div class="num">৫০০+</div><div class="lbl">সন্তুষ্ট কাস্টমার</div></div>
+      <div class="stat"><div class="num">১০০+</div><div class="lbl">প্রোডাক্ট</div></div>
+      <div class="stat"><div class="num">৪.৯★</div><div class="lbl">রেটিং</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-stack">
+      <div class="card-back"></div>
+      <div class="card-mid"></div>
+      <div class="card-front">
+        <div class="icon-big">🔊</div>
+        <p>Sound Box Special</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="search-section">
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>📦 দ্রুত ডেলিভারি</span><span class="dot">✦</span>
+    <span>✅ অরিজিনাল পণ্য</span><span class="dot">✦</span>
+    <span>💰 সেরা দাম গ্যারান্টি</span><span class="dot">✦</span>
+    <span>🔄 রিটার্ন পলিসি আছে</span><span class="dot">✦</span>
+    <span>📦 দ্রুত ডেলিভারি</span><span class="dot">✦</span>
+    <span>✅ অরিজিনাল পণ্য</span><span class="dot">✦</span>
+    <span>💰 সেরা দাম গ্যারান্টি</span><span class="dot">✦</span>
+    <span>🔄 রিটার্ন পলিসি আছে</span><span class="dot">✦</span>
+  </div>
+</div>
 
-    <input
-        type="text"
-        placeholder="🔍 Search Products..."
-        id="searchBox">
-
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="section-label">ক্যাটাগরি</div>
+  <h2 class="section-title">আমাদের পণ্যের ধরন</h2>
+  <p class="section-sub">আপনার পছন্দের ক্যাটাগরি বেছে নিন</p>
+  <div class="cat-grid">
+    <a href="#products" class="cat-card c1"><span class="cat-icon">🌀</span><span class="cat-name">রিচার্জেবল ফ্যান</span></a>
+    <a href="#products" class="cat-card c2"><span class="cat-icon">🎧</span><span class="cat-name">এয়ারপডস</span></a>
+    <a href="#products" class="cat-card c3"><span class="cat-icon">🔋</span><span class="cat-name">চার্জার</span></a>
+    <a href="#products" class="cat-card c4"><span class="cat-icon">💡</span><span class="cat-name">লাইট</span></a>
+    <a href="#products" class="cat-card c5"><span class="cat-icon">⌚</span><span class="cat-name">ঘড়ি</span></a>
+    <a href="#soundbox" class="cat-card c6"><span class="cat-icon">🔊</span><span class="cat-name">সাউন্ড বক্স</span></a>
+    <a href="#products" class="cat-card c7"><span class="cat-icon">🔥</span><span class="cat-name">স্মার্ট লাইটার</span></a>
+    <a href="#products" class="cat-card c8"><span class="cat-icon">📦</span><span class="cat-name">অন্যান্য</span></a>
+  </div>
 </section>
 
-<h1>The Gadget Ghor</h1>
-
-<p>দ্যা গ্যাজেট ঘর</p>
-
-</header>
-
-<section class="hero">
-
-<h2>Welcome To The Gadget Ghor</h2>
-
-<p>
-Smart Watch | AirPods | Speaker | Charger | Ring | Wallet | Lighter
-</p>
-
-<a class="button"
-href="https://www.facebook.com/TheGadgetGhorBD">
-Facebook Page
-</a>
-
-<a class="button"
-href="https://wa.me/8801340353399">
-WhatsApp Order
-</a>
-
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-label">প্রোডাক্ট গ্যালারি</div>
+  <h2 class="section-title">জনপ্রিয় পণ্যসমূহ</h2>
+  <p class="section-sub">আমাদের বেস্টসেলার পণ্যগুলো দেখুন এবং সরাসরি WhatsApp-এ অর্ডার করুন</p>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">সব</button>
+    <button class="filter-btn" onclick="filterProducts('fan', this)">ফ্যান</button>
+    <button class="filter-btn" onclick="filterProducts('audio', this)">অডিও</button>
+    <button class="filter-btn" onclick="filterProducts('charger', this)">চার্জার</button>
+    <button class="filter-btn" onclick="filterProducts('light', this)">লাইট</button>
+    <button class="filter-btn" onclick="filterProducts('watch', this)">ঘড়ি</button>
+    <button class="filter-btn" onclick="filterProducts('other', this)">অন্যান্য</button>
+  </div>
+  <div class="product-grid" id="productGrid">
+    <!-- Products injected by JS -->
+  </div>
 </section>
 
-<h2>Our Products</h2>
+<!-- SOUNDBOX SPECIAL -->
+<section id="soundbox">
+  <div class="soundbox-inner">
+    <div class="soundbox-text">
+      <div class="soundbox-badge">🌟 বিশেষ আকর্ষণ</div>
+      <h2>আমাদের <span class="accent">Sound Box</span><br/>কালেকশন</h2>
+      <p>পার্টি, পিকনিক বা বাড়িতে — আমাদের সাউন্ড বক্স আপনার সব মুহূর্তকে করবে অসাধারণ। শক্তিশালী বেস, ক্রিস্টাল ক্লিয়ার সাউন্ড।</p>
+      <div class="soundbox-features">
+        <div class="sf"><span class="dot"></span> Bluetooth 5.0 সংযোগ</div>
+        <div class="sf"><span class="dot"></span> LED লাইট ইফেক্ট</div>
+        <div class="sf"><span class="dot"></span> ১০-২০ ঘণ্টা ব্যাটারি ব্যাকআপ</div>
+        <div class="sf"><span class="dot"></span> ওয়াটারপ্রুফ ডিজাইন</div>
+        <div class="sf"><span class="dot"></span> পোর্টেবল ও হালকা ওজন</div>
+      </div>
+      <a class="btn-primary" href="https://wa.me/8801XXXXXXXXX?text=সাউন্ড%20বক্সের%20দাম%20জানতে%20চাই" target="_blank">
+        💬 দাম জানুন
+      </a>
+    </div>
+    <div class="soundbox-visual">🔊</div>
+  </div>
+</section>
 
-<div class="products">
+<!-- WHY US -->
+<section id="why">
+  <div class="section-label">কেন আমরা</div>
+  <h2 class="section-title">কেন The Gadget Ghor?</h2>
+  <p class="section-sub">হাজারো কাস্টমার আমাদের বিশ্বাস করেন কারণ…</p>
+  <div class="why-grid">
+    <div class="why-card w1">
+      <div class="icon">✅</div>
+      <h3>১০০% অরিজিনাল পণ্য</h3>
+      <p>আমরা শুধু মানসম্পন্ন ও অরিজিনাল পণ্য বিক্রি করি। কোনো নকল বা ভেজাল পণ্য নেই।</p>
+    </div>
+    <div class="why-card w2">
+      <div class="icon">💰</div>
+      <h3>সেরা দাম গ্যারান্টি</h3>
+      <p>বাজারের চেয়ে কম দামে পণ্য পাবেন। কোথাও কম পেলে আমরাও কম দেবো।</p>
+    </div>
+    <div class="why-card w3">
+      <div class="icon">🚀</div>
+      <h3>দ্রুত ডেলিভারি</h3>
+      <p>ঢাকার ভিতরে ১-২ দিন, সারাদেশে ২-৩ দিনের মধ্যে পৌঁছে দেই।</p>
+    </div>
+    <div class="why-card w4">
+      <div class="icon">💬</div>
+      <h3>সহজ অর্ডার প্রক্রিয়া</h3>
+      <p>WhatsApp বা Facebook-এ মেসেজ করুন, ঝামেলামুক্তভাবে অর্ডার করুন।</p>
+    </div>
+  </div>
+</section>
 
-<div class="card">
-⌚
-<h3>Smart Watch</h3>
-</div>
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-label">কাস্টমার রিভিউ</div>
+  <h2 class="section-title">কাস্টমাররা কী বলেন?</h2>
+  <p class="section-sub">আমাদের সন্তুষ্ট কাস্টমারদের সত্যিকারের অভিজ্ঞতা</p>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="review-header">
+        <div class="avatar" style="background:#FFF3E0">😊</div>
+        <div class="review-meta"><h4>রাহেলা বেগম</h4><span>ঢাকা</span></div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <p>রিচার্জেবল ফ্যানটা একদম পারফেক্ট! লোডশেডিংয়ে অনেক কাজে লাগছে। দাম কম, কোয়ালিটি ভালো। আবারও অর্ডার করব।</p>
+      <span class="verified">✓ ভেরিফাইড ক্রেতা</span>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <div class="avatar" style="background:#F3E5F5">🧑</div>
+        <div class="review-meta"><h4>সাকিব হাসান</h4><span>চট্টগ্রাম</span></div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <p>এয়ারপডস এর কোয়ালিটি আশার চেয়ে অনেক ভালো। ২ দিনে ডেলিভারি পেয়েছি। দোকানদার অনেক হেল্পফুল।</p>
+      <span class="verified">✓ ভেরিফাইড ক্রেতা</span>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <div class="avatar" style="background:#E3F2FD">👩</div>
+        <div class="review-meta"><h4>নাফিসা আক্তার</h4><span>সিলেট</span></div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <p>সাউন্ড বক্স কিনেছিলাম বাচ্চার জন্মদিনে। সাউন্ড অনেক ভালো, LED লাইট খুব সুন্দর। সবাই পছন্দ করেছে।</p>
+      <span class="verified">✓ ভেরিফাইড ক্রেতা</span>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <div class="avatar" style="background:#E8F5E9">🧔</div>
+        <div class="review-meta"><h4>মিজান মিয়া</h4><span>রাজশাহী</span></div>
+      </div>
+      <div class="stars">★★★★☆</div>
+      <p>স্মার্ট লাইটার এবং USB চার্জার কিনেছি। দুটোই মানসম্পন্ন। পরের বার ঘড়ি কিনব।</p>
+      <span class="verified">✓ ভেরিফাইড ক্রেতা</span>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <div class="avatar" style="background:#FCE4EC">👨</div>
+        <div class="review-meta"><h4>রিফাত করিম</h4><span>ময়মনসিংহ</span></div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <p>৩টা অর্ডার করেছি এখন পর্যন্ত। প্রতিবারই সময়মতো ডেলিভারি পেয়েছি। পণ্যের মান নিয়ে কোনো অভিযোগ নেই।</p>
+      <span class="verified">✓ ভেরিফাইড ক্রেতা</span>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <div class="avatar" style="background:#FFFDE7">👱‍♀️</div>
+        <div class="review-meta"><h4>সুমাইয়া ইসলাম</h4><span>কুমিল্লা</span></div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <p>LED লাইট কিনেছিলাম ঘর সাজানোর জন্য। অনেক সুন্দর দেখতে এবং দাম একদম কম। Recommended!</p>
+      <span class="verified">✓ ভেরিফাইড ক্রেতা</span>
+    </div>
+  </div>
+</section>
 
-<div class="card">
-🎧
-<h3>AirPods</h3>
-</div>
+<!-- HOW TO ORDER -->
+<section id="order" style="background:#fff;">
+  <div class="section-label">অর্ডার করুন</div>
+  <h2 class="section-title">কীভাবে অর্ডার করবেন?</h2>
+  <p class="section-sub">মাত্র ৪টি সহজ ধাপে আপনার পণ্য অর্ডার করুন</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">১</div>
+      <h3>পণ্য পছন্দ করুন</h3>
+      <p>আমাদের ওয়েবসাইট বা Facebook পেজ থেকে পছন্দের পণ্য বেছে নিন।</p>
+      <span class="step-arrow">→</span>
+    </div>
+    <div class="step">
+      <div class="step-num">২</div>
+      <h3>WhatsApp করুন</h3>
+      <p>পণ্যের নাম ও পরিমাণ WhatsApp-এ পাঠান।</p>
+      <span class="step-arrow">→</span>
+    </div>
+    <div class="step">
+      <div class="step-num">৩</div>
+      <h3>ঠিকানা দিন</h3>
+      <p>আপনার সম্পূর্ণ ঠিকানা ও ফোন নম্বর দিন।</p>
+      <span class="step-arrow">→</span>
+    </div>
+    <div class="step">
+      <div class="step-num">৪</div>
+      <h3>ডেলিভারি পান</h3>
+      <p>ক্যাশ অন ডেলিভারিতে পণ্য পেয়ে পেমেন্ট করুন!</p>
+    </div>
+  </div>
+  <a class="wa-order-big" href="https://wa.me/8801XXXXXXXXX?text=আমি%20অর্ডার%20করতে%20চাই" target="_blank">
+    <span class="wa-icon">💬</span> এখনই WhatsApp-এ অর্ডার করুন
+  </a>
+</section>
 
-<div class="card">
-🔊
-<h3>Speaker</h3>
-</div>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label" style="color:#C4B5FD">যোগাযোগ</div>
+  <h2 class="section-title" style="color:#fff">আমাদের সাথে যোগাযোগ করুন</h2>
+  <p class="section-sub" style="color:#C4B5FD">যেকোনো প্রশ্ন বা অর্ডারের জন্য আমরা সবসময় প্রস্তুত</p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="icon">📱</div>
+      <h3>WhatsApp</h3>
+      <a href="https://wa.me/8801XXXXXXXXX" target="_blank">+880 1X-XXXX-XXXX</a>
+    </div>
+    <div class="contact-card">
+      <div class="icon">👍</div>
+      <h3>Facebook পেজ</h3>
+      <a href="https://facebook.com/TheGadgetGhor" target="_blank">The Gadget Ghor</a>
+    </div>
+    <div class="contact-card">
+      <div class="icon">🕐</div>
+      <h3>সময়সূচি</h3>
+      <p>প্রতিদিন সকাল ৯টা – রাত ১১টা</p>
+    </div>
+    <div class="contact-card">
+      <div class="icon">📦</div>
+      <h3>ডেলিভারি</h3>
+      <p>সারাদেশে হোম ডেলিভারি</p>
+    </div>
+  </div>
+</section>
 
-<div class="card">
-🔌
-<h3>Charger</h3>
-</div>
-
-<div class="card">
-💍
-<h3>Ring</h3>
-</div>
-
-<div class="card">
-👛
-<h3>Wallet</h3>
-</div>
-
-</div>
-
+<!-- FOOTER -->
 <footer>
-
-<p>📞 +8801340353399</p>
-
-<p>📧 thegadgetghor@gmail.com</p>
-
-<p>© 2026 The Gadget Ghor</p>
-
+  <p>© ২০২৫ <span>The Gadget Ghor — দ্যা গ্যাজেট ঘর</span> | সর্বস্বত্ব সংরক্ষিত</p>
+  <p style="margin-top:6px; font-size:.78rem;">Made with ❤️ in Bangladesh</p>
 </footer>
 
-</body><header>
-    <div class="logo">THE GADGET GHOR</div>
+<!-- FLOATING WA BUTTON -->
+<a class="wa-float" href="https://wa.me/8801XXXXXXXXX?text=আমি%20অর্ডার%20করতে%20চাই" target="_blank" title="WhatsApp-এ অর্ডার করুন">💬</a>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="#">Categories</a>
-        <a href="#">Offers</a>
-        <a href="#">Contact</a>
-    </nav>
-</header>
+<script>
+const PRODUCTS = [
+  { id:1, cat:'fan',     icon:'🌀', name:'রিচার্জেবল টেবিল ফ্যান',  desc:'৩ স্পিড, ৮ ঘণ্টা ব্যাকআপ, USB চার্জিং', price:'৳৬৫০', old:'৳৮৫০', badge:'hot', bg:'#FFF3E0' },
+  { id:2, cat:'audio',   icon:'🎧', name:'Wireless Earbuds Pro',      desc:'Bluetooth 5.0, নয়েজ ক্যান্সেলিং, ডিপ বেস', price:'৳৫৫০', old:'৳৭৫০', badge:'new', bg:'#F3E5F5' },
+  { id:3, cat:'charger', icon:'🔋', name:'৬৫W ফাস্ট চার্জার',        desc:'সকল ফোনের জন্য, দ্রুত চার্জিং', price:'৳৩৫০', old:'৳৫০০', badge:'', bg:'#E3F2FD' },
+  { id:4, cat:'light',   icon:'💡', name:'RGB LED স্ট্রিপ লাইট',     desc:'৫ মিটার, ১৬ কালার, রিমোট কন্ট্রোল', price:'৳৪৫০', old:'৳৬০০', badge:'hot', bg:'#FFFDE7' },
+  { id:5, cat:'watch',   icon:'⌚', name:'স্মার্ট ওয়াচ Ultra',       desc:'হার্ট রেট, স্টেপ কাউন্টার, Bluetooth', price:'৳৯৫০', old:'৳১৪০০', badge:'new', bg:'#E8F5E9' },
+  { id:6, cat:'audio',   icon:'🔊', name:'Bluetooth Speaker Mini',    desc:'পোর্টেবল, ওয়াটারপ্রুফ, ৮ ঘণ্টা', price:'৳৭৫০', old:'৳১০০০', badge:'', bg:'#FCE4EC' },
+  { id:7, cat:'other',   icon:'🔥', name:'USB স্মার্ট লাইটার',       desc:'ইলেকট্রিক, ওয়াইন্ড-প্রুফ, রিচার্জেবল', price:'৳২৫০', old:'৳৩৫০', badge:'hot', bg:'#E0F7FA' },
+  { id:8, cat:'charger', icon:'🔌', name:'পাওয়ার ব্যাংক ২০০০০mAh',  desc:'ডুয়াল USB, ফাস্ট চার্জ, LED ডিসপ্লে', price:'৳১২৫০', old:'৳১৮০০', badge:'new', bg:'#F9FBE7' },
+];
 
-<section class="hero">
+function renderProducts(filter='all') {
+  const grid = document.getElementById('productGrid');
+  const list = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === filter);
+  grid.innerHTML = list.map(p => `
+    <div class="product-card">
+      <div class="product-thumb" style="background:${p.bg}">
+        ${p.badge === 'new' ? '<span class="badge-new">NEW</span>' : p.badge === 'hot' ? '<span class="badge-hot">🔥 HOT</span>' : ''}
+        <span style="font-size:3.8rem">${p.icon}</span>
+      </div>
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <p class="prod-desc">${p.desc}</p>
+        <div class="price-row">
+          <div>
+            <div class="price">${p.price}</div>
+            <div class="price-old">${p.old}</div>
+          </div>
+        </div>
+        <a class="order-btn" href="https://wa.me/8801XXXXXXXXX?text=${encodeURIComponent('আমি ' + p.name + ' অর্ডার করতে চাই')}" target="_blank">
+          💬 WhatsApp অর্ডার
+        </a>
+      </div>
+    </div>
+  `).join('');
+}
 
-    <h1>The Gadget Ghor</h1>
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(cat);
+}
 
-    <p>
-        বাংলাদেশের বিশ্বস্ত গ্যাজেট শপ
-    </p>
-
-    <a href="#" class="btn">Shop Now</a>
-
-    <a href="https://wa.me/8801340353399" class="btn">
-        WhatsApp Order
-    </a>
-
-</section>
-
-<section class="section">
-
-<h2 class="title">
-Featured Categories
-</h2>
-
-<div class="products">
-
-<div class="card">
-⌚
-<h3>Smart Watch</h3>
-</div>
-
-<div class="card">
-🎧
-<h3>AirPods</h3>
-</div>
-
-<div class="card">
-🔊
-<h3>Speaker</h3>
-</div>
-
-<div class="card">
-🔌
-<h3>Charger</h3>
-</div>
-
-<div class="card">
-💍
-<h3>Ring</h3>
-</div>
-
-<div class="card">
-👛
-<h3>Wallet</h3>
-</div>
-
-</div>
-
-</section>
-
-<footer>
-
-<h2>The Gadget Ghor</h2>
-
-<p>
-📞 +8801340353399
-</p>
-
-<p>
-📧 thegadgetghor@gmail.com
-</p>
-
-</footer>
-
-<script src="script.js"></script>
+renderProducts();
+</script>
+</body>
 </html>
